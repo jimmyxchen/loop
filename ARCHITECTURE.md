@@ -33,6 +33,7 @@ The current source material is intentionally small:
 - Playwright for browser execution, screenshots, and interaction checks.
 - Provider adapters for model calls and image generation.
 - Generated web pages isolated under per-run workspaces.
+- English and Mandarin Chinese dual-language implementation.
 
 ### Deferred Scope
 
