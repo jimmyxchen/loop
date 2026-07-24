@@ -1,93 +1,68 @@
-# AdventureX Exampler Topics
+# AdventureX 参考题目
 
-## Primary Target Track
+## 主赛道
 
-- Track: `它写、它画、它验：无人值守的前端自进化工厂`
-- Source: user-provided prompt
-- Judging input: official 8 example requirement cards + unseen final judge cards
+- 赛道：`它写、它画、它验：无人值守的前端自进化工厂`
+- 来源：用户提供的原始题目
+- 评分输入：官方公开的 8 张示例需求卡 + 终审盲测卡
 
-## Open-Book Challenges from StepFun × AdventureX 2026
+## StepFun × AdventureX 2026 开卷题目
 
-Source: `https://stepfunadvx.cloud-yyweb.workers.dev/`
+来源：`https://stepfunadvx.cloud-yyweb.workers.dev/`
 
 ### 01 — 3D / WebGL 敦煌壁画
-- Recreate a first-person explorable Mogao cave with sunlight as the only light source.
-- Lighting driven by real local system time and real sun angles for Dunhuang.
-- Continuous narrative murals around the walls; only 1–2 scenes visible at a time.
-- No flashlight, global illumination, or “see all” switch.
-- Ambient low-frequency sound; matching short phrases when light hits a scene.
-- Instruments limited to approximate timbres of pipa, bi’li, sheng, konghou, jiegu.
-- No piano or modern synthesizer timbres.
-- Show local time, Chinese traditional时辰, and percentage of murals not visible.
-- Time-acceleration slider allowed for demo; default must use real time.
-- Murals should use aged lead-gray and土red, not high-saturation new-paint style.
-- Not a museum guide page with click hotspots.
+- 用 Three.js 重建可第一人称漫游的莫高窟覆斗顶石窟。
+- 窟内唯一光源是东壁门洞进来的日光，不允许环境光整体提亮。
+- 光斑位置由用户本地系统时间驱动，按敦煌真实太阳高度角与方位角计算。
+- 四壁是连续叙事壁画，用户任一时刻只能看清光斑扫过的 1–2 个场景。
+- 不允许手电、全局照明或“看全”开关。
+- 窟内有持续低频环境音与风声，光落到某段叙事时叠入匹配短乐句。
+- 限定乐器音色近似：琵琶、筚篥、笙、箜篌、羯鼓；不允许钢琴或现代合成器。
+- 页面角落显示当前时间、中国古代时辰、以及当前看不到的壁画比例。
+- 可提供演示用时间加速滑块，但默认必须走真实时间。
+- 壁画颜色应是氧化后的暗沉铅灰与土红，不要高饱和新绘风格。
+- 不要做成带热点弹说明卡片的博物馆导览页。
 
 ### 02 — 音画交互音乐可视化
-- Explicit, deterministic, reversible function between brush strokes and sound.
-- Drawing → sound mapping must be explicit and visible in UI.
-  - Stroke curvature → pitch
-  - Stroke thickness → volume
-  - Drawing speed → note duration
-  - Color → timbre using Kandinsky’s specific mappings in *Concerning the Spiritual in Art*
-    - Yellow = sharp approach of trumpet
-    - Blue = deep retreat of cello and organ
-    - Red = trumpet or horn depending on brightness
-    - Green = static balance in violin middle register
-    - Orange = middle bell or mezzo-soprano
-    - Violet = melancholy of cor anglais and low woodwinds
-    - White = possible rest
-    - Black = terminal rest
-- Multiple strokes must play as multi-track polyphony simultaneously.
-- Sound → drawing: upload/record audio and deterministically decode into a painting.
-- Same audio must yield stable output across runs.
-- Round-trip test: draw → audio → redraw, showing original and second painting side by side with structural similarity.
-- Not a spectrum bar chart or common audio visualizer.
+- 建立画笔与声音之间显式、确定且双向可逆的函数。
+- 画的方向映射规则必须显式实现并在页面上可查：
+  - 笔触曲率决定音高
+  - 笔触粗细决定音量
+  - 绘制速度决定音符时值
+  - 颜色决定音色，且必须严格采用康定斯基《论艺术的精神》中的具体对应
+- 多条笔触共存时应作为多轨复调同时播放。
+- 听的方向：上传或录制音频后反向解算成一幅画，同一段音频每次结果必须稳定一致。
+- 提供“往返测试”：画 → 音频 → 再画，并排展示两幅画且结构可辨认地相似。
+- 不要做成频谱柱状图或常见 audio visualizer。
 
 ### 03 — 游戏 3D 版坦克大战
-- Pure web first-person 3D tank battle from commander hatch view.
-- No third-person over-shoulder camera.
-- 3 tank types with structural differences:
-  - Heavy: deploy ground anchor into fixed turret mode; damage and range double; immobile while deployed; 2s hard deploy/undeploy.
-  - Assault: short instant displacement; 3s fire disable after warp.
-  - Support: deploy recon drone and switch to drone view; body unprotected while drone active.
-- Every ability must expose a real cost/weakness, not just cooldown.
-- Physical ballistics:
-  - Shell flight time and gravity drop.
-  - Aiming lead required at long range.
-  - Armor zones: front, side, rear, top with different bounce angle thresholds.
-  - Ricochet on shallow angles with spark and sound feedback.
-- Environment: abandoned high-tech industrial city.
-- Destructible cover, electromagnetic interference zones, and at least one elevation difference enabling weak-top-armor strategy.
-- At least 3 AI tanks with cover use, flanking, and low-hp retreat behavior.
-- No spinning in place or straight-line rush behaviors.
+- 纯网页第一人称 3D 坦克对战，视角固定在车长舱内。
+- 不允许第三人称越肩视角。
+- 3 种机型，差异必须是结构性的：
+  - 重装型：展开地锚进入固定炮台模式，伤害与射程翻倍，展开/收起各有 2 秒硬直，展开期间无法移动
+  - 突击型：短距瞬时位移，跃迁后 3 秒内无法开火
+  - 支援型：放出侦察无人机并切视角，期间本体完全无防护
+- 弹道必须物理化：飞行时间、重力下坠、远距离提前量。
+- 装甲分正面、侧面、背面、顶部，各有不同跳弹角度阈值。
+- 场景为被遗弃的高科技工业城，含可摧毁掩体、电磁干扰区、明显高低差。
+- 至少 3 台 AI 坦克，行为需包含掩体利用、侧翼包抄、低血量撤退。
+- 不接受原地转圈或直线冲脸。
 
 ### 04 — 动效复刻讲解视频
-- Single HTML file that auto-plays with play/pause and progress bar.
-- Total duration within ±3% of original video.
-- Before coding, output an拆解表 with one row per independent motion effect:
-  - timecode
-  - visual element
-  - motion type
-  - easing curve
-  - narration point
-- Priority order:
-  1. information structure and appearance order
-  2. timing and rhythm
-  3. layout and relative geometry
-  4. color and font using closest open-source substitutes
-  5. pixel-perfect visual fidelity lowest priority
-- No embedding original video clips.
-- No using screenshots as backgrounds then animating on top.
-- Narration may use timed captions or Web Speech API; human voice not required.
-- After completion, list 3 most inaccurate reproductions and explain whether each is a technical limitation or judgment call.
-- Reference resource provided: `讲解视频复刻 video.mp4`
+- 交付一个打开即自动播放、带播放暂停与进度条的单 HTML 文件。
+- 总时长与原片误差不超过 ±3%。
+- 动手写代码前必须先输出拆解表，每行一个独立动效：时间码、画面元素、动效类型、缓动曲线、讲解要点。
+- 复刻优先级：信息结构与出现顺序 > 动效时机与节奏 > 版式与图形相对关系 > 配色与字体 > 逐像素视觉一致性。
+- 不允许嵌入原片任何片段，也不允许拿截图当背景再往上加动画。
+- 旁白可用时间轴字幕或 Web Speech API 替代，不要求复刻人声。
+- 完成后列出三处最不像的地方，并说明是技术限制还是判断失误。
+- 参考资源：`讲解视频复刻 video.mp4`
 
 ### 05 — AI 数字人实时对话
-- Real-time conversational digital human.
-- Continuous self-evolution using LLM and image generation capabilities.
+- 做一个可以实时对话的、能借助多模态能力持续自我进化的数字人。
+- 可利用 LLM、生图等能力完成不同任务。
 
-## Notes
+## 备注
 
-- These topics were saved for reference during system design and judging preparation.
-- The judging system may ask questions mapped from any of these topics or the primary track.
+- 这些题目仅作为系统设计与评审准备阶段的参考。
+- 实际评分可能围绕其中任意题目，也可能围绕主赛道展开。

@@ -1,238 +1,237 @@
-# AdventureX Hackathon PRD — 前端自进化工厂
+# AdventureX Hackathon PRD — Frontend Self-Evolution Factory
 
-## 一句话系统描述
+## One-line system description
 
-输入任意一条 ≤100 字自然语言需求卡 + 一句风格描述，系统在无人干预下自动完成前端生成、素材自产、多模态自验收、自动重改与重绘，输出可运行网页、完整迭代轨迹、以及 1 小时以上无人运行日志与指标曲线。
+Input a natural-language requirement card of ≤100 words plus one style sentence. The system runs unattended to generate frontend code, produce visual assets, self-verify with multimodal review, and automatically refactor or redraw assets until the output is a shipped webpage plus a full iteration trajectory and a ≥1 hour unattended run log with metrics.
 
-## 赛道问题映射
+## Track problem mapping
 
-- 输入什么：任意需求卡。
-- 无人干预地经历什么：需求解析 → 生成 → 验收 → 结构化问题回流 → 改代码 / 重画图 → 再验收。
-- 输出什么：成品网页、素材包、轨迹、日志、指标曲线。
+- Input: requirement cards.
+- Unattended process: requirement parsing → generation → verification → structured issue feedback → code change or asset redraw → re-verification.
+- Output: finished webpage, asset bundle, iteration trajectory, run log, and metrics curve.
 
-## 产品目标
+## Product goal
 
-构建一个通用前端自进化工厂，能应对“未见过的需求卡”，覆盖工具类、内容类、交互类、动效类、3D/可视化类、游戏类等多种网页形态。
+Build a general-purpose frontend self-evolution factory that can handle unseen requirement cards across tools, content, interaction, animation, 3D/visualization, and game-style web apps.
 
-## 成功标准
+## Success criteria
 
-1. 至少连续 3 轮无人值守闭环，且每轮验收自动触发重改。
-2. 有独立 Verify Agent，至少使用截图 + 多模态视觉模型验收。
-3. 至少一次 ≥1 小时无人干预长跑，输出日志与指标曲线。
-4. 长跑过程中解决至少 2 个长程运行难题。
-5. 面对未见需求卡仍能端到端产出可用成品。
+1. Complete at least 3 unattended closed-loop iterations, with verification automatically triggering refactors.
+2. Include an independent Verify Agent that uses screenshot capture plus multimodal visual understanding.
+3. Produce at least one ≥1 hour unattended long run with a log and metrics curve.
+4. Solve at least 2 long-run engineering problems during the long run.
+5. Deliver end-to-end working outputs for unseen requirement cards.
 
-## 系统架构
+## System architecture
 
 ```
-需求卡
-  │
-  ▼
+Requirement card
+      │
+      ▼
 Planner Agent
-  │
-  ├─▶ Frontend Agent（代码生成）
-  │     │
-  │     └─▶ 产物：可运行网页
-  │
-  ├─▶ Asset Agent（生图 / 搜索）
-  │     │
-  │     └─▶ 产物：Logo、插画、背景、装饰素材
-  │
-  └─▶ Verify Agent（多模态验收 + 自动化交互）
-        │
-        ├─▶ 视觉验收：截图 + 多模态模型比对需求与风格
-        ├─▶ 素材验收：切题性、风格一致性
-        └─▶ 交互验收：Playwright 点击、表单、路由
-              │
-              ▼
-        结构化问题清单
-              │
-              ▼
-        Refactor Agent / Asset Agent
-              │
-              └─▶ 自动回流重改
-                    │
-                    ▼
-              下一轮闭环
+      │
+      ├─▶ Frontend Agent (code generation)
+      │     │
+      │     └─▶ Output: runnable webpage
+      │
+      ├─▶ Asset Agent (image generation / search)
+      │     │
+      │     └─▶ Output: logos, illustrations, backgrounds, decorative assets
+      │
+      └─▶ Verify Agent (multimodal verification + browser automation)
+            │
+            ├─▶ Visual verification: screenshots + multimodal model comparison
+            ├─▶ Asset verification: relevance and style consistency
+            └─▶ Interaction verification: Playwright clicks, forms, navigation
+                  │
+                  ▼
+             Structured issue list
+                  │
+                  ▼
+            Refactor Agent / Asset Agent
+                  │
+                  └─▶ Automatic refactor or redraw
+                        │
+                        ▼
+                   Next closed loop
 ```
 
-## Agent 定义
+## Agent definitions
 
 ### Planner Agent
-- 角色：拆解需求卡，生成可执行任务清单、验收标准、优先级。
-- 模型：强推理模型。
-- 输入：需求卡、风格描述、历史失败项。
-- 输出：本轮生成/验收任务、停止条件。
+- Role: parse the requirement card into executable tasks, verification criteria, and priorities.
+- Model: strong reasoning model.
+- Input: requirement card, style description, historical failures.
+- Output: generation/verification tasks, stop conditions.
 
 ### Frontend Agent
-- 角色：按任务生成页面，集成素材路径与交互逻辑。
-- 模型：代码模型 + 模板约束。
-- 输入：Planner 任务、Asset Agent 素材清单。
-- 输出：可运行页面、diff 摘要。
+- Role: generate the webpage and integrate asset paths and interaction logic.
+- Model: code model with template constraints.
+- Input: Planner tasks, Asset Agent asset list.
+- Output: runnable page, diff summary.
 
 ### Asset Agent
-- 角色：按 Frontend Agent 所需生成或搜索视觉素材。
-- 模型：生图模型 / 搜索接口。
-- 输入：素材需求、风格描述、历史素材审核结论。
-- 输出：图片文件、提示词、调用日志。
+- Role: generate or search visual assets required by the Frontend Agent.
+- Model: image generation model / search interface.
+- Input: asset requirements, style description, historical asset review outcomes.
+- Output: image files, prompts, call logs.
 
 ### Verify Agent
-- 角色：多模态验收 + 结构化问题提取。
-- 模型：多模态视觉模型 + 规则引擎。
-- 输入：渲染截图、需求文本、风格描述、素材包、页面快照。
-- 输出：通过项、失败项、评分、重改建议。
+- Role: multimodal verification and structured issue extraction.
+- Model: multimodal vision model + rule engine.
+- Input: rendered screenshots, requirement text, style description, asset bundle, page snapshot.
+- Output: passed checks, failed checks, scores, refactor recommendations.
 
 ### Refactor Agent
-- 角色：根据 Verify Agent 结论修改代码或提示词。
-- 模型：代码模型。
-- 输入：问题清单、当前代码、素材。
-- 输出：补丁、重跑指令。
+- Role: modify code or prompts based on Verify Agent conclusions.
+- Model: code model.
+- Input: issue list, current code, assets.
+- Output: patch, rerun instructions.
 
-## 核心机制
+## Core mechanisms
 
-### 1. 需求卡规范
-- 自然语言需求 ≤100 字。
-- 一句风格描述。
-- 官方示例 8 张 + 终审盲测卡。
+### 1. Requirement card spec
+- Natural language requirement ≤100 words.
+- One style description sentence.
+- Official examples: 8 public cards + unseen final judge cards.
 
-### 2. 生成机制
-- Frontend Agent 生成页面。
-- Asset Agent 同步生成或搜索所需素材。
-- 禁止人工中途修改代码、提示词、素材。
+### 2. Generation mechanism
+- Frontend Agent generates the webpage.
+- Asset Agent generates or searches required assets in parallel.
+- No manual code, prompt, or asset edits between rounds.
 
-### 3. 验收机制
-- 截图进多模态模型，检查布局、风格、素材切题。
-- Playwright 执行点击、输入、表单提交、导航。
-- 输出结构化问题清单，至少包含：布局偏差、素材跑题、风格不一致、交互失效。
+### 3. Verification mechanism
+- Send screenshots into a multimodal model to check layout, style, and asset relevance.
+- Use Playwright to execute clicks, input, form submission, navigation, and mode switches.
+- Output structured issue list including layout deviations, off-topic assets, style conflicts, and broken interactions.
 
-### 4. 迭代机制
-- 问题分类为改代码或重画图。
-- Refactor Agent / Asset Agent 自动处理。
-- 验收通过或达到最大轮次后停止。
+### 4. Iteration mechanism
+- Classify issues as code fixes or asset redraws.
+- Refactor Agent or Asset Agent handles them automatically.
+- Stop when verification passes or max rounds are reached.
 
-### 5. 长跑机制
-- 单任务可反复收敛，也可批处理需求卡。
-- 每轮记录截图、素材、验收结论、改动摘要。
-- 输出 ≥1 小时运行日志与指标曲线。
+### 5. Long-run mechanism
+- Support repeated convergence on one card or batch processing of multiple cards.
+- Record screenshots, assets, verification conclusions, and change summaries per round.
+- Output ≥1 hour run log and metrics curve.
 
-## Verify Agent 验收手段
+## Verify Agent verification methods
 
-### 多模态验收
-- 将页面截图与需求文本、风格描述一起送入视觉模型。
-- 检查视觉重心、留白、层级、配色、字体风格是否一致。
-- 检查素材内容是否与页面功能匹配。
+### Multimodal verification
+- Send page screenshots together with requirement text and style description into a vision model.
+- Check visual focus, whitespace, hierarchy, color, and typography consistency.
+- Check whether asset content matches page functionality.
 
-### 自动化交互验收
-- 使用 Playwright 打开页面。
-- 执行按钮点击、表单填写、提交、跳转、深色模式切换等。
-- 检查控制台报错、网络请求、响应状态、超时行为。
+### Automated interaction verification
+- Use Playwright to open the page.
+- Execute button clicks, form fills, submission, navigation, dark mode toggles, and other flows.
+- Check console errors, network requests, response status, and timeout behavior.
 
-### 结构化输出
-- 每项问题附：严重级别、位置描述、修复建议、责任 Agent。
-- 汇总风格匹配分、交互通过率、素材切题分。
+### Structured output
+- Each issue includes severity, location description, fix recommendation, and responsible agent.
+- Aggregate style match score, interaction pass rate, and asset relevance score.
 
-## 两个真实问题案例
+## Two real issue examples
 
-### 案例 1：布局偏差
-- 问题：Verify Agent 从截图中发现页面在小屏下出现横向溢出，关键按钮被截断。
-- 修复：Frontend Agent 调整容器与断点，下一轮截图通过。
+### Example 1: layout deviation
+- Issue: Verify Agent detects horizontal overflow on small screens, cutting off a primary button.
+- Fix: Frontend Agent adjusts container width and breakpoints; next-round screenshot passes.
 
-### 案例 2：生图素材被打回
-- 问题：Asset Agent 生成页面背景图，但多模态模型判断画面元素与页面功能不匹配，且风格与前景 UI 冲突。
-- 修复：Asset Agent 根据反馈重写提示词并重新生成，Verify Agent 第二轮确认风格统一、切题。
+### Example 2: asset redraw
+- Issue: Asset Agent generates a background image, but the multimodal model judges the imagery mismatched with the page purpose and clashing with foreground UI style.
+- Fix: Asset Agent rewrites the prompt and regenerates; Verify Agent confirms style alignment and relevance in round two.
 
-## 交付物清单
+## Deliverables
 
-1. 最终网页成品
-2. 完整迭代轨迹
-   - 每轮截图
-   - 生成素材
-   - 验收结论
-   - 改动摘要
-3. ≥1 小时无人干预运行日志
-4. 指标曲线
-   - 建议至少包含：验收通过项、风格匹配评分、交互通过率、轮次耗时、调用成本
-5. 生图 API 调用日志摘要
-   - 调用次数、用途分布、失败重试次数
-6. 仓库地址
-7. 一键运行说明
-8. 演示视频 ≤3 分钟
+1. Final webpage
+2. Complete iteration trajectory
+   - Screenshots per round
+   - Generated assets
+   - Verification conclusions
+   - Change summaries
+3. ≥1 hour unattended run log
+4. Metrics curve
+   - Recommended metrics: verification pass count, style match score, interaction pass rate, round duration, call cost
+5. Image API call log summary
+   - Call count, usage breakdown, failed retry count
+6. Repository address
+7. One-click run instructions
+8. Demo video ≤3 minutes
 
-## 长跑工程要求
+## Long-run engineering requirements
 
-### 必须解决的至少 2 个难题
-建议从以下范围中选择：
+### Must solve at least 2 problems
+Recommended options:
 
-1. 上下文 / 记忆管理
-2. 断点续跑
-3. 防目标漂移
-4. 成本控制
+1. Context / memory management
+2. Checkpoint and resume
+3. Goal-drift prevention
+4. Cost control
 
-### 推荐解法方向
-- 用结构化状态文件保存每轮产物与结论。
-- 每轮只把必要上下文注入下一轮，避免上下文膨胀。
-- 设置预算上限、模型降级策略、素材复用策略。
-- 引入超时与熔断，防止单轮无限循环。
+### Recommended approaches
+- Persist round outputs and conclusions in structured state files.
+- Inject only necessary context into the next round to avoid context bloat.
+- Set budget caps, model fallback strategies, and asset reuse policies.
+- Add timeouts and circuit breakers to prevent infinite loops.
 
-## 成本控制策略
+## Cost control strategy
 
-1. 模型分级：推理用强模型，生成/重改用性价比模型。
-2. 素材复用：相似需求复用历史素材或局部修改。
-3. 调用记账：记录每轮 token 与生图调用次数，生成成本报告。
-4. 超时熔断：单轮超时或连续两轮无提升则降级策略或终止。
+1. Model tiering: strong models for reasoning, cost-efficient models for generation and refactoring.
+2. Asset reuse: reuse historical assets or apply targeted edits for similar requirements.
+3. Usage accounting: record token and image-generation call counts per round, then generate cost reports.
+4. Timeout and fallback: downgrade strategy or terminate if a round times out or shows no improvement across two consecutive rounds.
 
-## 预估消耗口径
+## Estimated consumption reporting
 
-- 整次长跑记录：
-  - 总 token 消耗
-  - 生图调用次数
-  - 平均每轮成本
-  - 最长单轮耗时
+- Total token usage
+- Total image-generation calls
+- Average cost per round
+- Longest single-round duration
 
-## 已知失败模式与瓶颈
+## Known failure modes and bottlenecks
 
-| 失败模式 | 可能原因 | 缓解策略 |
+| Failure mode | Likely cause | Mitigation |
 | --- | --- | --- |
-| 生图风格不稳定 | 提示词漂移、模型随机性 | 固定风格种子、参考图、后处理校验 |
-| 代码回退 | 重改引入新问题 | 保留上一轮备份、最小 diff 策略 |
-| 长跑失忆 | 上下文丢失 | 结构化记忆文件 + 断点续跑 |
-| 烧钱 | 无限迭代 | 预算上限、最大轮次、降级策略 |
-| 目标漂移 | 后期偏离需求卡 | 每轮重新注入原始需求卡作为锚点 |
+| Unstable image style | Prompt drift, model randomness | Fixed style seed, reference images, post-validation |
+| Code regression | Refactor introduces new issues | Keep previous round backup, minimal diff strategy |
+| Long-run amnesia | Lost context | Structured memory files + checkpoint resume |
+| Overspending | Infinite iteration | Budget caps, max rounds, fallback strategy |
+| Goal drift | Later rounds deviate from requirement card | Re-inject original requirement card every round as an anchor |
 
-## 现场盲测应对
+## Handling unseen requirement cards
 
-1. 需求解析阶段先提取功能点与视觉关键词。
-2. 优先保证核心交互可用，再优化视觉。
-3. 生图素材保守风格优先，避免过度创意导致跑题。
-4. 预留最后一轮快速修正时间窗口。
+1. Extract functional points and visual keywords early in requirement parsing.
+2. Prioritize core interaction correctness before visual polish.
+3. Use conservative asset styles first to avoid off-topic results.
+4. Reserve a late-round fast-fix window before judging.
 
-## 评审标准应对
+## Judging-criteria alignment
 
-| 评审维度 | 对应设计 |
+| Judging dimension | Design response |
 | --- | --- |
-| 闭环完整度 30% | 无人值守 3+ 轮、自动回流重改、可重复运行 |
-| 自验收智能 25% | 多模态截图验收 + 自动化交互验证 + 素材审核 |
-| 长跑稳定性 25% | 1 小时日志、指标曲线、断点续跑、成本控制 |
-| 成品质感 20% | 需求卡盲测、素材融合、轨迹可读性 |
+| Closed-loop completeness 30% | Unattended 3+ rounds, automatic refactor/redraw, repeatable execution |
+| Self-verification intelligence 25% | Multimodal screenshot review + automated interaction testing + asset review |
+| Long-run stability 25% | 1-hour log, metrics curve, checkpoint resume, cost control |
+| Output quality 20% | Unseen requirement card handling, asset-page integration, readable trajectory |
 
-## 里程碑
+## Milestones
 
-1. 需求卡解析器可用
-2. Frontend + Asset Agent 可生成首版
-3. Verify Agent 能发现至少 2 类真实问题
-4. 自动回流改代码 / 重画图跑通 3 轮
-5. 长跑 1 小时，输出日志与指标曲线
-6. 准备评审材料与演示视频
+1. Requirement card parser is usable
+2. Frontend + Asset Agent can generate first version
+3. Verify Agent can detect at least 2 real issue categories
+4. Automatic code fix / asset redraw closed loop works for 3 rounds
+5. 1-hour long run with log and metrics curve
+6. Prepare judging materials and demo video
 
-## 风险评估
+## Risk assessment
 
-- 多模态模型误判：增加规则兜底与人工抽检样本。
-- 生图 API 限流：队列化、重试、降级到搜索。
-- 长跑崩溃：日志持久化 + 断点续跑 + 健康检查。
+- Multimodal false positives: add rule fallbacks and sampled spot checks.
+- Image API rate limits: queueing, retries, and fallback to search.
+- Long-run crashes: persistent logging, checkpoint resume, and health checks.
 
-## 附录
+## Appendix
 
-- 赛道原始题目与要求
-- 需求卡示例
-- 指标定义
-- API 调用日志样例
+- Original track requirements
+- Requirement card examples
+- Metric definitions
+- Sample API call logs
