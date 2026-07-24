@@ -1,0 +1,106 @@
+{
+  "brand": "Loop",
+  "tagline": "AI 驱动的前端自进化",
+  "subtitle": "自主生成、验证并迭代网页界面。",
+  "openDashboard": "打开控制台",
+  "viewDocs": "查看文档",
+  "nav": {
+    "dashboard": "控制台",
+    "iterations": "迭代记录",
+    "artifacts": "素材库",
+    "settings": "设置"
+  },
+  "hero": {
+    "generate": "生成",
+    "generateDesc": "AI 编写前端代码",
+    "verify": "验证",
+    "verifyDesc": "多模态检查",
+    "iterate": "迭代",
+    "iterateDesc": "自动修复并收敛"
+  },
+  "dashboard": {
+    "title": "AI 前端自进化",
+    "pipelineLabel": "生成 → 验证 → 迭代",
+    "status": {
+      "idle": "待机",
+      "running": "流水线运行中",
+      "error": "错误"
+    },
+    "stats": {
+      "iterations": "迭代次数",
+      "passRate": "通过率",
+      "tokensUsed": "Token 消耗",
+      "imagesGenerated": "生成图片数"
+    },
+    "pipeline": {
+      "title": "活跃流水线",
+      "generate": "生成",
+      "generateDesc": "Agent 编写代码",
+      "verify": "验证",
+      "verifyDesc": "截图 + 多模态",
+      "iterate": "迭代",
+      "iterateDesc": "修复并重新生成"
+    },
+    "metrics": {
+      "title": "验证分数",
+      "desc": "各维度平均值",
+      "latest": "最新"
+    },
+    "demandCard": {
+      "title": "新建需求卡",
+      "requirement": "需求（≤100 字）",
+      "requirementPlaceholder": "例如：做一个带深色模式切换的番茄钟",
+      "style": "风格参考",
+      "stylePlaceholder": "例如：极简风格、可爱插画",
+      "startBtn": "启动流水线"
+    },
+    "logs": {
+      "title": "流水线日志",
+      "entries": "条记录"
+    }
+  },
+  "iterations": {
+    "title": "迭代记录",
+    "passed": "通过",
+    "failed": "未通过",
+    "issuesFound": "发现的问题：",
+    "screenshot": {
+      "title": "截图对比",
+      "before": "修改前",
+      "after": "修改后"
+    }
+  },
+  "artifacts": {
+    "title": "生成素材",
+    "filters": {
+      "all": "全部",
+      "images": "图片",
+      "logs": "日志"
+    }
+  },
+  "settings": {
+    "sections": {
+      "apiKeys": "API 密钥",
+      "agentConfig": "Agent 配置",
+      "costControls": "成本控制"
+    },
+    "fields": {
+      "openaiKey": "OpenAI API 密钥",
+      "imageGenApi": "生图 API",
+      "browserEndpoint": "浏览器自动化地址",
+      "generateModel": "生成模型",
+      "verifyModel": "验证模型",
+      "maxIterations": "最大迭代次数",
+      "timeout": "超时（秒）",
+      "tokenBudget": "单次 Token 预算",
+      "maxImages": "最大生图数",
+      "cooldown": "运行间隔"
+    },
+    "notConfigured": "未配置"
+  },
+  "logLevels": {
+    "info": "信息",
+    "warn": "警告",
+    "error": "错误"
+  }
+}

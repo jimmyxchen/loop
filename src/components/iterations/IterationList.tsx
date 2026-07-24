@@ -7,6 +7,7 @@ const iterations = [
 ]
 
 export default function IterationList() {
+  const statusColor: Record<string, string> = { passed: 'bg-gray-100 text-gray-800', failed: 'bg-red-50 text-red-700' }
   return (
     <div className="space-y-3">
       {iterations.map((iter) => (
@@ -24,10 +25,8 @@ export default function IterationList() {
             <span className={`text-sm font-medium ${iter.status === 'passed' ? 'text-gray-900' : 'text-red-600'}`}>
               {iter.score}%
             </span>
-            <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${
-              iter.status === 'passed' ? 'bg-gray-100 text-gray-800' : 'bg-red-50 text-red-700'
-            }`}>
-              {iter.status === 'passed' ? 'Passed' : 'Failed'}
+            <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${statusColor[iter.status]}`}>
+              {iter.status}
             </span>
           </div>
         </div>

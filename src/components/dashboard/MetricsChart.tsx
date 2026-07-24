@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next'
+
 const points = [42, 48, 55, 52, 61, 58, 67, 64, 72, 68, 75, 71]
 
 export default function MetricsChart() {
+  const { t } = useTranslation()
   const max = Math.max(...points)
   const width = 600
   const height = 160
@@ -23,12 +26,12 @@ export default function MetricsChart() {
     <div className="rounded-lg border border-gray-200 bg-white p-4">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="text-sm font-medium text-gray-900">Verification Score</h3>
-          <p className="text-xs text-gray-500">Avg across all dimensions</p>
+          <h3 className="text-sm font-medium text-gray-900">{t('dashboard.metrics.title')}</h3>
+          <p className="text-xs text-gray-500">{t('dashboard.metrics.desc')}</p>
         </div>
         <div className="text-right">
           <p className="text-lg font-semibold text-gray-900">{points[points.length - 1]}%</p>
-          <p className="text-xs text-gray-500">latest</p>
+          <p className="text-xs text-gray-500">{t('dashboard.metrics.latest')}</p>
         </div>
       </div>
       <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto">

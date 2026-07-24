@@ -1,3 +1,29 @@
-const artifacts=[{id:"a1",type:"image",name:"logo_generated_v1.png",size:"24KB"},{id:"a2",type:"image",name:"hero_illustration_v2.png",size:"128KB"},{id:"a3",type:"image",name:"icon_dark_mode.png",size:"8KB"},{id:"a4",type:"log",name:"build_log_004.txt",size:"2KB"},{id:"a5",type:"image",name:"background_pattern.png",size:"56KB"},{id:"a6",type:"log",name:"verify_report_004.json",size:"4KB"}];
-const typeIcon:Record<string,string>={image:"<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='m21 15-5-5L5 21'/></svg>",log:"<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z'/><path d='M14 2v6h6'/></svg>"};
-export default function ArtifactGrid(){return(<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">{artifacts.map(a=>(<div key={a.id} className="rounded-lg border border-gray-200 bg-white p-3 hover:border-gray-400 transition-colors cursor-pointer"><div className="aspect-square rounded-md bg-gray-50 border border-gray-100 flex items-center justify-center mb-3"><span dangerouslySetInnerHTML={{__html:typeIcon[a.type]||""}}/></div><p className="text-xs font-medium text-gray-900 truncate">{a.name}</p><p className="text-xs text-gray-500">{a.size}</p></div>))}</div>)}
+const artifacts = [
+  { id: 'a1', type: 'image', name: 'logo_generated_v1.png', size: '24KB' },
+  { id: 'a2', type: 'image', name: 'hero_illustration_v2.png', size: '128KB' },
+  { id: 'a3', type: 'image', name: 'icon_dark_mode.png', size: '8KB' },
+  { id: 'a4', type: 'log', name: 'build_log_004.txt', size: '2KB' },
+  { id: 'a5', type: 'image', name: 'background_pattern.png', size: '56KB' },
+  { id: 'a6', type: 'log', name: 'verify_report_004.json', size: '4KB' },
+]
+
+const typeIcon: Record<string, string> = {
+  image: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="m21 15-5-5L5 21" /></svg>',
+  log: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" /><path d="M14 2v6h6" /></svg>',
+}
+
+export default function ArtifactGrid() {
+  return (
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {artifacts.map((a) => (
+        <div key={a.id} className="rounded-lg border border-gray-200 bg-white p-3 hover:border-gray-400 transition-colors cursor-pointer">
+          <div className="aspect-square rounded-md bg-gray-50 border border-gray-100 flex items-center justify-center mb-3">
+            <span dangerouslySetInnerHTML={{ __html: typeIcon[a.type] || '' }} />
+          </div>
+          <p className="text-xs font-medium text-gray-900 truncate">{a.name}</p>
+          <p className="text-xs text-gray-500">{a.size}</p>
+        </div>
+      ))}
+    </div>
+  )
+}

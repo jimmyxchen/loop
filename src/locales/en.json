@@ -1,0 +1,106 @@
+{
+  "brand": "Loop",
+  "tagline": "AI-driven frontend self-evolution",
+  "subtitle": "Generate, verify, and iterate on webpages autonomously.",
+  "openDashboard": "Open Dashboard",
+  "viewDocs": "View Documentation",
+  "nav": {
+    "dashboard": "Dashboard",
+    "iterations": "Iterations",
+    "artifacts": "Artifacts",
+    "settings": "Settings"
+  },
+  "hero": {
+    "generate": "Generate",
+    "generateDesc": "AI writes frontend code",
+    "verify": "Verify",
+    "verifyDesc": "Multimodal checks",
+    "iterate": "Iterate",
+    "iterateDesc": "Auto-fix and converge"
+  },
+  "dashboard": {
+    "title": "AI Frontend Self-Evolution",
+    "pipelineLabel": "Generate → Verify → Iterate",
+    "status": {
+      "idle": "Idle",
+      "running": "Pipeline running",
+      "error": "Error"
+    },
+    "stats": {
+      "iterations": "Iterations",
+      "passRate": "Pass Rate",
+      "tokensUsed": "Tokens Used",
+      "imagesGenerated": "Images Generated"
+    },
+    "pipeline": {
+      "title": "Active Pipeline",
+      "generate": "Generate",
+      "generateDesc": "Agent writes code",
+      "verify": "Verify",
+      "verifyDesc": "Screenshot + multimodal",
+      "iterate": "Iterate",
+      "iterateDesc": "Fix & re-generate"
+    },
+    "metrics": {
+      "title": "Verification Score",
+      "desc": "Avg across all dimensions",
+      "latest": "latest"
+    },
+    "demandCard": {
+      "title": "New Demand Card",
+      "requirement": "Requirement (≤100 words)",
+      "requirementPlaceholder": "e.g., Make a tomato clock with dark mode toggle",
+      "style": "Style Reference",
+      "stylePlaceholder": "e.g., Minimalist, playful illustration style",
+      "startBtn": "Start Pipeline"
+    },
+    "logs": {
+      "title": "Pipeline Logs",
+      "entries": "entries"
+    }
+  },
+  "iterations": {
+    "title": "Iterations",
+    "passed": "Passed",
+    "failed": "Failed",
+    "issuesFound": "Issues found:",
+    "screenshot": {
+      "title": "Screenshot Comparison",
+      "before": "Before",
+      "after": "After"
+    }
+  },
+  "artifacts": {
+    "title": "Generated Artifacts",
+    "filters": {
+      "all": "All",
+      "images": "Images",
+      "logs": "Logs"
+    }
+  },
+  "settings": {
+    "sections": {
+      "apiKeys": "API Keys",
+      "agentConfig": "Agent Configuration",
+      "costControls": "Cost Controls"
+    },
+    "fields": {
+      "openaiKey": "OpenAI API Key",
+      "imageGenApi": "Image Generation API",
+      "browserEndpoint": "Browser Automation Endpoint",
+      "generateModel": "Generate Model",
+      "verifyModel": "Verify Model",
+      "maxIterations": "Max Iterations",
+      "timeout": "Timeout (s)",
+      "tokenBudget": "Token Budget per Run",
+      "maxImages": "Max Image Generations",
+      "cooldown": "Cooldown Between Runs"
+    },
+    "notConfigured": "Not configured"
+  },
+  "logLevels": {
+    "info": "INFO",
+    "warn": "WARN",
+    "error": "ERROR"
+  }
+}
